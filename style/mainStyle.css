@@ -4,7 +4,13 @@
     margin: 0;
     padding: 0;
     color: black;
+     user-select: none;   /* stops text highlighting */
+    cursor: default; 
+}
 
+body {
+    overflow: hidden;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .container {
@@ -18,10 +24,10 @@
 }
 
 h1 {
-    height: 6vh;
+    /* height: 6vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
 .main {
@@ -67,17 +73,9 @@ h1 {
 .gameOver {
     position: absolute;
     visibility: hidden;
-    left: 44vw;
+    left: 26vw;
     top: 4vh;
-    font-size: 47px;
-    /* font-family: 'Lato', sans-serif; */
-    /* font-family: 'Playfair Display', serif; */
-    /* font-family: 'PT Serif', serif; */
-    /* font-family: 'Quicksand', sans-serif; */
-
-}
-body{
-    overflow: hidden;
+    font-size: 35px;
 }
 
 .score {
@@ -87,25 +85,41 @@ body{
     font-size: 39px;
     font-weight: bold;
 }
+.mx-score {
+    position: relative;
+    left: auto;
+    top: -49px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.header{
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header .start-end {
+    font-weight:300;       /* या numeric value जैसे 700 */
+    font-size: xx-large;     /* बड़ा font */
+    text-align: center;      /* text को center करना हो तो */
+}
 
 .dragonAnimate {
     animation: kuldeep 3s ease-in infinite;
-}
-
-.animate {
-    animation: jumpUp 0.7s ease-in-out infinite;
-
 }
 
 @keyframes kuldeep {
     0% {
         right: 0;
     }
-
     100% {
         right: 100vw;
     }
+}
 
+.animate {
+    animation: jumpUp 0.7s ease-in-out infinite;
 }
 
 @keyframes jumpUp {
@@ -120,4 +134,51 @@ body{
     100% {
         bottom: 0px;
     }
+}
+
+.score-btn {
+  display: flex;              /* enable flexbox */
+  justify-content: space-between; /* push items to opposite ends */
+  align-items: center;        /* vertically align them */
+  padding: 10px;              /* optional spacing */
+  /* background-color: #f0f0f0;  optional background */
+}
+
+.score {
+  font-weight: bold;
+}
+
+button {
+    padding: 6px 12px;
+    background-color: rgb(149, 66, 198);
+    /* color: white; */
+    border: 3px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: rgb(40, 225, 133);
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .obj, .dragon {
+        height: 18vh;
+        width: 25vw;
+    }
+     
+    .container{
+        display: flex;
+        font-size: 1rem;
+        justify-content: center;
+        flex-direction: column;
+        
+    }
+    .score, .mx-score {
+        font-size: 1rem;
+    }
+
+   
 }
