@@ -20,6 +20,9 @@ function startAgain() {
     const newscore1 = document.querySelector(".start-end");
     newscore1.style.visibility =
         newscore1.style.visibility === "hidden" ? "visible" : "hidden";
+    const freshScore = document.querySelector(".score");
+    freshScore.style.visibility =
+        freshScore.style.visibility === "hidden" ? "visible" : "visible";
 }
 let con = 1;
 document.querySelector("button").addEventListener("click", () => {
@@ -43,7 +46,6 @@ document.querySelector("button").addEventListener("click", () => {
                     let p = document.querySelector(".obj");
                     p.classList.remove("animate");
                 }, 700);
-                // p.style.top="40px"
             } else if (e.keyCode == 37) {
                 let obj = document.querySelector(".obj");
                 left = parseInt(window.getComputedStyle(obj, null).getPropertyValue('left'));
@@ -74,27 +76,27 @@ document.querySelector("button").addEventListener("click", () => {
 
             document.querySelector(".score").innerHTML = `Score : ${sc}`;
             document.querySelector(".mx-score").innerHTML = `High Score : ${high}`;
-            if (dx < 125 && dy < 125) {
+            const func1 = () => {
                 dra.classList.remove("dragonAnimate");
                 game.style.visibility = "visible";
                 clearInterval(intr);
                 let collideAudio = new Audio("music/death.mp3");
+                collideAudio.volume = 0.3;
                 collideAudio.play();
                 gameAudio.pause();
                 let srq = document.querySelector(".score");
                 let gameq = document.querySelector(".start-end")
                 localStorage.setItem("mx-score", high);
                 console.log(srq);
-                // document.querySelector(".start-end").innerHTML = srq.innerHTML;
                 gameq.innerHTML = srq.innerHTML;
-                gameq.style.fontWeight = "300";
+                gameq.style.cssText = srq.style.cssText;
                 srq.style.visibility = 'hidden';
                 gameq.style.visibility = 'visible';
-                gameq.style.fontSize = 'bold';
+                // gameq.style.fontSize = 'bold';
                 console.log(gameq)
                 con = true;
             }
-            if (dx < 150) {
+            const func2 = () => {
                 high = Math.max(high, sc);
                 setTimeout(() => {
                     let dur = parseFloat(window.getComputedStyle(dra, null).getPropertyValue('animation-duration'));
@@ -102,13 +104,104 @@ document.querySelector("button").addEventListener("click", () => {
                     console.log("updated animation duration " + dur);
                     dra.style.animationDuration = dur + 's';
                 }, 800)
-
             }
+            const dragon = document.querySelector(".dragon");
+            const dragonWidth = window.getComputedStyle(dragon).getPropertyValue("width");
+            console.log(dragonWidth);
+            console.log("Dragon Width is " + dragonWidth)
+            if (dragonWidth === "149.5px") {
+                if (dx < 125 && dy < 125) {
+                    func1();
+                }
+                if (dx < 150) {
+                    func2();
+                }
+                console.log("yes condition is satified")
+            } else {
+                if (dx < 95 && dy < 95) {
+                    func1();
+                }
+                if (dx < 100) {
+                    func2();
+                }
+                console.log("No not satisfied")
+            }
+
 
             sc++;
             high = Math.max(high, sc);
         }, 100)
     }
-
-
 })
+
+/* ---------------- MOBILE CONTROLS ---------------- */
+
+document.getElementById("jump")?.addEventListener("touchstart", () => {
+    let obj = document.querySelector(".obj");
+    obj.classList.add("animate");
+    setTimeout(() => obj.classList.remove("animate"), 700);
+});
+
+document.getElementById("left")?.addEventListener("touchstart", () => {
+    let obj = document.querySelector(".obj");
+    let left = parseInt(window.getComputedStyle(obj).getPropertyValue('left'));
+    obj.style.left = left - 70 + "px";
+});
+
+document.getElementById("right")?.addEventListener("touchstart", () => {
+    let obj = document.querySelector(".obj");
+    let left = parseInt(window.getComputedStyle(obj).getPropertyValue('left'));
+    obj.style.left = left + 70 + "px";
+});
+
+// --------------------on clicking -------------------------------------------
+document.getElementById("jump")?.addEventListener("click", () => {
+    let obj = document.querySelector(".obj");
+    obj.classList.add("animate");
+    setTimeout(() => obj.classList.remove("animate"), 700);
+});
+
+document.getElementById("left")?.addEventListener("click", () => {
+    let obj = document.querySelector(".obj");
+    let left = parseInt(window.getComputedStyle(obj).getPropertyValue('left'));
+    obj.style.left = left - 70 + "px";
+});
+
+document.getElementById("right")?.addEventListener("click", () => {
+    let obj = document.querySelector(".obj");
+    let left = parseInt(window.getComputedStyle(obj).getPropertyValue('left'));
+    obj.style.left = left + 70 + "px";
+});
+
+// Swipe gestures
+let startX, startY;
+document.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+});
+
+document.addEventListener("touchend", (e) => {
+    let endX = e.changedTouches[0].clientX;
+    let endY = e.changedTouches[0].clientY;
+
+    let dx = endX - startX;
+    let dy = endY - startY;
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+        // Horizontal swipe
+        let obj = document.querySelector(".obj");
+        let left = parseInt(window.getComputedStyle(obj).getPropertyValue('left'));
+        if (dx > 0) {
+            obj.style.left = left + 70 + "px"; // swipe right
+        } else {
+            obj.style.left = left - 70 + "px"; // swipe left
+        }
+    } else {
+        // Vertical swipe
+        if (dy < 0) {
+            let obj = document.querySelector(".obj");
+            obj.classList.add("animate");
+            setTimeout(() => obj.classList.remove("animate"), 700);
+        }
+    }
+});

@@ -4,8 +4,9 @@
     margin: 0;
     padding: 0;
     color: black;
-     user-select: none;   /* stops text highlighting */
-    cursor: default; 
+    user-select: none;
+    /* stops text highlighting */
+    cursor: default;
 }
 
 body {
@@ -19,7 +20,7 @@ body {
     position: absolute;
     background: url("../img/background1.jpg");
     color: white;
-    background-size:cover ;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -40,6 +41,65 @@ h1 {
     position: absolute;
 }
 
+.gameOver {
+    position: absolute;
+    visibility: hidden;
+    left: 50%;
+    /* move to horizontal center */
+    top: 20%;
+    /* move to vertical center */
+    transform: translate(-50%, -50%);
+    /* adjust back by half its size */
+    font-size: 35px;
+    text-align: center;
+    /* center text inside */
+}
+
+
+.score {
+    position: fixed;
+    right: 5vw;
+    top: 7vh;
+    font-size: 39px;
+    font-weight: bold;
+}
+
+.mx-score {
+    position: fixed;
+    top: 7vh;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.play-btn {
+    position: fixed;
+    top: 7vh;
+    left: 45vw;
+
+}
+
+
+
+.header {
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header .start-end {
+    font-weight: bold;
+
+    font-size: xx-large;
+    text-align: center;
+
+}
+
+.header .start-end {
+    position: relative;
+    top: 10vh;
+}
+
 .obj {
     transform: rotateY(180deg);
     position: absolute;
@@ -51,7 +111,7 @@ h1 {
     height: 25vh;
     width: 16vw;
     left: 0;
-    bottom: 0px;
+    bottom: 5vh;
 }
 
 
@@ -61,49 +121,15 @@ h1 {
     background: url("../img/dragon.img.png");
     background-size: contain;
     background-repeat: no-repeat;
-    height: 30vh;
-    width: 15vw;
-    right: 0;
+    height: 25vh;
+    width: 16vw;
+    right: -15vw;
     /* right: 0px; */
-    bottom: -10px;
+    bottom: 5vh;
     /* border: 3px solid rgb(232, 0, 0); */
 
 }
 
-.gameOver {
-    position: absolute;
-    visibility: hidden;
-    left: 26vw;
-    top: 4vh;
-    font-size: 35px;
-}
-
-.score {
-    position: absolute;
-    left: 83.6vw;
-    top: -7vh;
-    font-size: 39px;
-    font-weight: bold;
-}
-.mx-score {
-    position: relative;
-    left: auto;
-    top: -49px;
-    font-size: 25px;
-    font-weight: bold;
-}
-.header{
-  display: flex;
-  justify-items: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-.header .start-end {
-    font-weight:300;       /* या numeric value जैसे 700 */
-    font-size: xx-large;     /* बड़ा font */
-    text-align: center;      /* text को center करना हो तो */
-}
 
 .dragonAnimate {
     animation: kuldeep 3s ease-in infinite;
@@ -111,8 +137,9 @@ h1 {
 
 @keyframes kuldeep {
     0% {
-        right: 0;
+        right: -15vw;
     }
+
     100% {
         right: 100vw;
     }
@@ -137,15 +164,15 @@ h1 {
 }
 
 .score-btn {
-  display: flex;              /* enable flexbox */
-  justify-content: space-between; /* push items to opposite ends */
-  align-items: center;        /* vertically align them */
-  padding: 10px;              /* optional spacing */
-  /* background-color: #f0f0f0;  optional background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+   
 }
 
 .score {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 button {
@@ -163,22 +190,84 @@ button:hover {
     transform: scale(1.05);
 }
 
+.controls {
+    visibility: hidden;
+}
+
+
+hr {
+    position: fixed;
+    /* relative to viewport */
+    bottom: 5vh;
+    height: 2vh;
+    /* 5% above bottom edge */
+    left: 0;
+    width: 100%;
+    border: none;
+    border-top: 2px solid #333;
+}
+
+
+
 @media (max-width: 768px) {
-    .obj, .dragon {
-        height: 18vh;
-        width: 25vw;
+
+    .obj,
+    .dragon {
+        height: 11vh;
+        width: 20vw;
     }
-     
-    .container{
+
+    .score-btn {
+
+        /* display: flex; */
+        margin-top: 10vh;
+        /* justify-content: center;
+        padding: 10px; */
+    }
+
+    .gameOver {
+
+        font-size: 20px;
+
+    }
+
+    .controls {
+        position: fixed;
+        /* width: 100%; */
         display: flex;
-        font-size: 1rem;
-        justify-content: center;
-        flex-direction: column;
-        
+        gap: 10px;
+        z-index: 1000;
+        visibility: visible;
+        /* makes sure they’re shown */
     }
-    .score, .mx-score {
+
+    .controls button {
+        font-size: 1.3rem;
+        padding: 3px 3px;
+        /* top: 40vh; */
+        border-radius: 10px;
+        border: none;
+        background: #333;
+        color: #fff;
+    }
+
+    .controls button:active {
+        background: #555;
+    }
+
+    .score,
+    .mx-score {
         font-size: 1rem;
     }
 
-   
+    .header h1,
+    .start-end {
+        font-size: 1.4rem;
+    }
+
+    .header .start-end {
+        position: relative;
+        top: 10vh;
+    }
+
 }
