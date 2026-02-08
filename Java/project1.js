@@ -118,7 +118,7 @@ document.querySelector("button").addEventListener("click", () => {
                 }
                 console.log("yes condition is satified")
             } else {
-                if (dx < 95 && dy < 95) {
+                if (dx < 78 && dy < 78) {
                     func1();
                 }
                 if (dx < 100) {
