@@ -1,4 +1,4 @@
-high = localStorage.getItem("mx-score");
+high = localStorage.getItem("mx-score") || 0;
 
 document.querySelector(".mx-score").innerHTML = `High Score : ${high}`;
 let gameAudio;
@@ -81,7 +81,7 @@ document.querySelector("button").addEventListener("click", () => {
                 game.style.visibility = "visible";
                 clearInterval(intr);
                 let collideAudio = new Audio("music/death.mp3");
-                collideAudio.volume = 0.3;
+                collideAudio.volume = 0.1;
                 collideAudio.play();
                 gameAudio.pause();
                 let srq = document.querySelector(".score");
@@ -164,13 +164,13 @@ document.getElementById("jump")?.addEventListener("click", () => {
 document.getElementById("left")?.addEventListener("click", () => {
     let obj = document.querySelector(".obj");
     let left = parseInt(window.getComputedStyle(obj).getPropertyValue('left'));
-    obj.style.left = left - 70 + "px";
+    obj.style.left = left - 100 + "px";
 });
 
 document.getElementById("right")?.addEventListener("click", () => {
     let obj = document.querySelector(".obj");
     let left = parseInt(window.getComputedStyle(obj).getPropertyValue('left'));
-    obj.style.left = left + 70 + "px";
+    obj.style.left = left + 100 + "px";
 });
 
 // Swipe gestures
@@ -192,9 +192,9 @@ document.addEventListener("touchend", (e) => {
         let obj = document.querySelector(".obj");
         let left = parseInt(window.getComputedStyle(obj).getPropertyValue('left'));
         if (dx > 0) {
-            obj.style.left = left + 70 + "px"; // swipe right
+            obj.style.left = left + 100 + "px"; // swipe right
         } else {
-            obj.style.left = left - 70 + "px"; // swipe left
+            obj.style.left = left - 100 + "px"; // swipe left
         }
     } else {
         // Vertical swipe
