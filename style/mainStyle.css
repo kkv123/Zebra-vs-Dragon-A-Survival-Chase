@@ -7,7 +7,7 @@
     user-select: none;
     /* stops text highlighting */
     cursor: default;
-     overflow: hidden;
+    overflow: hidden;
 }
 
 body {
@@ -169,7 +169,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-   
+
 }
 
 .score {
@@ -216,20 +216,15 @@ hr {
     .dragon {
         height: 11vh;
         width: 20vw;
+        bottom: 15vh;
     }
 
     .score-btn {
-
-        /* display: flex; */
         margin-top: 10vh;
-        /* justify-content: center;
-        padding: 10px; */
     }
 
     .gameOver {
-
         font-size: 20px;
-
     }
 
     .controls {
@@ -239,7 +234,6 @@ hr {
         gap: 10px;
         z-index: 1000;
         visibility: visible;
-        /* makes sure they’re shown */
     }
 
     .controls button {
@@ -270,5 +264,38 @@ hr {
         position: relative;
         top: 10vh;
     }
+
+    .dragonAnimate {
+        animation: kuldeep 3.5s ease-in infinite;
+    }
+
+    @keyframes kuldeep {
+        0% {
+            right: -15vw;
+        }
+
+        100% {
+            right: 100vw;
+        }
+    }
+
+    .animate {
+        animation: jumpUp 0.7s ease-in-out infinite;
+    }
+
+    @keyframes jumpUp {
+        0% {
+            bottom: 0px;
+        }
+
+        50% {
+            bottom: 60vh;
+        }
+
+        100% {
+            bottom: 0px;
+        }
+    }
+
 
 }
