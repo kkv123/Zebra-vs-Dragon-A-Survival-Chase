@@ -132,7 +132,7 @@ h1 {
 
 
 .dragonAnimate {
-    animation: kuldeep 3s ease-in infinite;
+    animation: kuldeep 3.5s ease-in infinite;
 }
 
 @keyframes kuldeep {
