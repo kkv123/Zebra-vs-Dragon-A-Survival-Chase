@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&family=PT+Serif:ital@1&family=Playfair+Display&family=Quicksand:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    color: black;
+    user-select: none;
+    /* stops text highlighting */
+    cursor: default;
+    overflow: hidden;
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.container {
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    background: url("../img/background1.jpg");
+    color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    /* height: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.main {
+
+    width: 100%;
+    height: 94vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.main .start-end {
+    position: absolute;
+    visibility: visible;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, -50%);
+    font-size: 35px;
+    text-align: center;
+}
+
+.gameOver {
+    position: absolute;
+    visibility: hidden;
+    left: 50%;
+    /* move to horizontal center */
+    top: 26%;
+    /* move to vertical center */
+    transform: translate(-50%, -50%);
+    /* adjust back by half its size */
+    font-size: 35px;
+    text-align: center;
+    /* center text inside */
+}
+
+
+.score {
+    position: fixed;
+    right: 5vw;
+    top: 7vh;
+    font-size: 39px;
+    font-weight: bold;
+}
+
+.mx-score {
+    position: fixed;
+    top: 7vh;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.play-btn {
+    position: fixed;
+    top: 7vh;
+    left: 45vw;
+
+}
+
+
+
+.header {
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header .start-end {
+    font-weight: bold;
+
+    font-size: xx-large;
+    text-align: center;
+
+}
+
+.header .start-end {
+    position: relative;
+    top: 10vh;
+}
+
+.obj {
+    transform: rotateY(180deg);
+    position: absolute;
+    /* background-color: red; */
+    background-image: url("../img/bird.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* border: 3px solid black; */
+    height: 25vh;
+    width: 16vw;
+    left: 0;
+    bottom: 5vh;
+    transition: left 0.3s ease-in-out;
+}
+
+
+.dragon {
+    transform: rotateY(180deg);
+    position: absolute;
+    background: url("../img/dragon.img.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 25vh;
+    width: 16vw;
+    right: -15vw;
+    /* right: 0px; */
+    bottom: 5vh;
+}
+
+
+.dragonAnimate {
+    animation: kuldeep 3.5s ease-in infinite;
+}
+
+@keyframes kuldeep {
+    0% {
+        right: -15vw;
+    }
+
+    100% {
+        right: 100vw;
+    }
+}
+
+.animate {
+     animation: jumpUp 0.7s ease-in-out infinite;
+}
+
+
+@keyframes jumpUp {
+    0%   { bottom: 5vh; }
+    50%  { bottom: 50vh; }
+    100% { bottom: 5vh; }
+}
+
+
+.score-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.score {
+    font-weight: bold;
+}
+
+button {
+    padding: 6px 12px;
+    background-color: rgb(149, 66, 198);
+    /* color: white; */
+    border: 3px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: rgb(40, 225, 133);
+    transform: scale(1.05);
+}
+
+.controls {
+    visibility: hidden;
+}
+
+
+hr {
+    position: fixed;
+    /* relative to viewport */
+    bottom: 5vh;
+    height: 2vh;
+    /* 5% above bottom edge */
+    left: 0;
+    width: 100%;
+    border: none;
+    border-top: 2px solid #333;
+}
+
+
+
+@media (max-width: 768px) {
+
+    .obj,
+    .dragon {
+        height: 11vh;
+        width: 20vw;
+        bottom: 15vh;
+    }
+
+    .score-btn {
+        margin-top: 10vh;
+    }
+
+    .gameOver {
+        font-size: 20px;
+    }
+
+    .controls {
+        position: fixed;
+        /* width: 100%; */
+        display: flex;
+        gap: 10px;
+        z-index: 1000;
+        visibility: visible;
+    }
+
+    .controls button {
+        font-size: 1.3rem;
+        padding: 3px 3px;
+        /* top: 40vh; */
+        border-radius: 10px;
+        border: none;
+        background: #333;
+        color: #fff;
+    }
+
+    .controls button:active {
+        background: #555;
+    }
+
+    .score,
+    .mx-score {
+        font-size: 1rem;
+    }
+
+    .header h1,
+    .start-end {
+        font-size: 1.4rem;
+    }
+
+    .header .start-end {
+        position: relative;
+        top: 10vh;
+    }
+
+    .dragonAnimate {
+        animation: kuldeep 3.5s ease-in infinite;
+    }
+
+    @keyframes kuldeep {
+        0% {
+            right: -15vw;
+        }
+
+        100% {
+            right: 100vw;
+        }
+    }
+
+    .animate {
+        animation: jumpUp 0.7s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+    }
+
+
+    @keyframes jumpUp {
+        0% {
+            bottom: 15vh;
+        }
+        50% {
+            bottom: 63vh;
+        }
+        100% {
+            bottom: 15vh;
+        }
+    }
+
+
+
+}
